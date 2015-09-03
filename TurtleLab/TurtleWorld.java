@@ -35,10 +35,11 @@ public class TurtleWorld
         //Define variables    
         int angle = 121;
         int length = 1;
-        int iter = 1000; //or until the turtle hits the boundary
+        int turtleiter = 1000; //or until the turtle hits the boundary
+        int totaliter = 2;
         int delay = 1;
         int incwidth = 75; //hwo many iterations per increase of width
-        int actualiter = 0; //counts actual number of iterations
+        
         
         //World dimensions
         Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -68,64 +69,74 @@ public class TurtleWorld
         turtle1.penDown();
         turtle2.penDown();
         turtle3.penDown();
-        
-        for(int i=1; i<=iter; i++){
+        for(int j=1; j<=totaliter; j++)
+        {
+            int actualiter = 0; //counts actual number of iterations
             
-            if(method.turtleOutOfBounds(turtle, worldX, worldY))
-            {
-                break;
+            turtle.setPenWidth(1);
+            turtle1.setPenWidth(1);
+            turtle2.setPenWidth(1);
+            turtle3.setPenWidth(1);
+            
+            for(int i=1; i<=turtleiter; i++){
+                
+                if(method.turtleOutOfBounds(turtle, worldX, worldY))
+                {
+                    break;
+                }
+                //System.out.println(turtle.getYPos());
+                //System.out.println(worldY);
+                turtle.setPenColor(method.makeColor());
+                turtle.forward(i*length);
+                turtle.turn(angle);
+                turtle.setPenWidth(i/incwidth);
+                turtle1.setPenColor(method.makeColor());
+                turtle1.forward(i*length);
+                turtle1.turn(angle);
+                turtle1.setPenWidth(i/incwidth);
+                turtle2.setPenColor(method.makeColor());
+                turtle2.forward(i*length);
+                turtle2.turn(angle);
+                turtle2.setPenWidth(i/incwidth);
+                turtle3.setPenColor(method.makeColor());
+                turtle3.forward(i*length);
+                turtle3.turn(angle);
+                turtle3.setPenWidth(i/incwidth);
+                
+                actualiter +=1;
+                
+                Thread.sleep(delay);            
+                
             }
-            //System.out.println(turtle.getYPos());
-            //System.out.println(worldY);
-            turtle.setPenColor(method.makeColor());
-            turtle.forward(i*length);
-            turtle.turn(angle);
-            turtle.setPenWidth(i/incwidth);
-            turtle1.setPenColor(method.makeColor());
-            turtle1.forward(i*length);
-            turtle1.turn(angle);
-            turtle1.setPenWidth(i/incwidth);
-            turtle2.setPenColor(method.makeColor());
-            turtle2.forward(i*length);
-            turtle2.turn(angle);
-            turtle2.setPenWidth(i/incwidth);
-            turtle3.setPenColor(method.makeColor());
-            turtle3.forward(i*length);
-            turtle3.turn(angle);
-            turtle3.setPenWidth(i/incwidth);
-            
-            actualiter +=1;
-            
-            Thread.sleep(delay);            
-            
-        }
-        turtle.setPenColor(Color.WHITE);
-        turtle1.setPenColor(Color.WHITE);
-        turtle2.setPenColor(Color.WHITE);
-        turtle3.setPenColor(Color.WHITE);
-        for(int i=1; i<=actualiter; i++){
-            
-            
-            //System.out.println(turtle.getYPos());
-            //System.out.println(worldY);
-            turtle.turn(-angle);
-            turtle.backward(i*length);
-            turtle.setPenWidth((actualiter-i)/incwidth);
-            
-            turtle1.setPenWidth((actualiter-i)/incwidth);
-            turtle1.backward(i*length);
-            turtle1.turn(-angle);
-            
-            turtle2.setPenWidth((actualiter-i)/incwidth);
-            turtle2.backward(i*length);
-            turtle2.turn(-angle);
-                        
-            turtle3.setPenWidth((actualiter-i)/incwidth);
-            turtle3.backward(i*length);
-            turtle3.turn(-angle);
-            
-            Thread.sleep(delay);            
-            
+            turtle.setPenColor(Color.WHITE);
+            turtle1.setPenColor(Color.WHITE);
+            turtle2.setPenColor(Color.WHITE);
+            turtle3.setPenColor(Color.WHITE);
+            for(int i=1; i<=actualiter; i++){
+                
+                
+                //System.out.println(turtle.getYPos());
+                //System.out.println(worldY);
+                turtle.turn(-angle);
+                turtle.backward((actualiter-i)*length+1);
+                turtle.setPenWidth((actualiter-i)/incwidth+5);
+                
+                turtle1.turn(-angle);
+                turtle1.setPenWidth((actualiter-i)/incwidth+5);
+                turtle1.backward((actualiter-i)*length+1);
+                
+                turtle2.turn(-angle);
+                turtle2.setPenWidth((actualiter-i)/incwidth+5);
+                turtle2.backward((actualiter-i)*length+1);
+                
+                turtle3.turn(-angle);           
+                turtle3.setPenWidth((actualiter-i)/incwidth+5);
+                turtle3.backward((actualiter-i)*length+1);
+                
+                
+                Thread.sleep(delay);            
+                
+            }
         }
     }
 }
