@@ -16,9 +16,8 @@ public class DieSimulator
         //Option B
         double die2 = Math.random(); //double between 0 and 1
         for(int i=1;i<=rolls;i++){
-            die2 = Math.random();
-            die2 += 1;
-            
+            die2 = Math.random()*6 + 1;
+                        
             System.out.println((int)(die2));
         }
         

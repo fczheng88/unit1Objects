@@ -36,7 +36,7 @@ public class TurtleWorld
         int angle = 121;
         int length = 1;
         int turtleiter = 1000; //or until the turtle hits the boundary
-        int totaliter = 2;
+        int totaliter = 10;
         int delay = 1;
         int incwidth = 75; //hwo many iterations per increase of width
         
@@ -49,7 +49,7 @@ public class TurtleWorld
         int worldY = height-50;       
         
         
-        TurtleWorld method = new TurtleWorld();
+        TurtleWorld methods = new TurtleWorld();
         World turtleWorld = new World(worldX,worldY);
         Turtle turtle = new Turtle(turtleWorld);
         Turtle turtle1 = new Turtle(turtleWorld);
@@ -61,10 +61,10 @@ public class TurtleWorld
         turtle1.turn(angle);
         turtle2.turn(2*angle);
         turtle3.turn(3*angle);
-        turtle.setPenColor(method.makeColor());
-        turtle1.setPenColor(method.makeColor());
-        turtle2.setPenColor(method.makeColor());
-        turtle3.setPenColor(method.makeColor());
+        turtle.setPenColor(methods.makeColor());
+        turtle1.setPenColor(methods.makeColor());
+        turtle2.setPenColor(methods.makeColor());
+        turtle3.setPenColor(methods.makeColor());
         turtle.penDown();
         turtle1.penDown();
         turtle2.penDown();
@@ -80,25 +80,25 @@ public class TurtleWorld
             
             for(int i=1; i<=turtleiter; i++){
                 
-                if(method.turtleOutOfBounds(turtle, worldX, worldY))
+                if(methods.turtleOutOfBounds(turtle, worldX, worldY))
                 {
                     break;
                 }
                 //System.out.println(turtle.getYPos());
                 //System.out.println(worldY);
-                turtle.setPenColor(method.makeColor());
+                turtle.setPenColor(methods.makeColor());
                 turtle.forward(i*length);
                 turtle.turn(angle);
                 turtle.setPenWidth(i/incwidth);
-                turtle1.setPenColor(method.makeColor());
+                turtle1.setPenColor(methods.makeColor());
                 turtle1.forward(i*length);
                 turtle1.turn(angle);
                 turtle1.setPenWidth(i/incwidth);
-                turtle2.setPenColor(method.makeColor());
+                turtle2.setPenColor(methods.makeColor());
                 turtle2.forward(i*length);
                 turtle2.turn(angle);
                 turtle2.setPenWidth(i/incwidth);
-                turtle3.setPenColor(method.makeColor());
+                turtle3.setPenColor(methods.makeColor());
                 turtle3.forward(i*length);
                 turtle3.turn(angle);
                 turtle3.setPenWidth(i/incwidth);
